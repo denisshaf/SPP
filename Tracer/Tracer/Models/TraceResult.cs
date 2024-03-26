@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Tracer
+namespace Tracer.Models
 {
     public struct TraceResult()
     {
@@ -35,7 +35,7 @@ namespace Tracer
                     foreach (var child in cur.ChildMethods)
                         q.Enqueue(child);
 
-                    sb.Append($"Tracing for method {cur.Name} (thread: {this.Id}) (depth: {depth}) ");
+                    sb.Append($"Tracing for method {cur.Name} (thread: {Id}) (depth: {depth}) ");
                     sb.Append($"of class {cur.ClassName}. ");
                     sb.Append($"Execution time - {cur.Time}");
                     sb.AppendLine();

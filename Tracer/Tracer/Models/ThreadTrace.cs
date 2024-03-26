@@ -11,8 +11,8 @@ namespace Tracer
     {
         internal int Id;
         internal long TotalTime { get; private set; }
-        internal int Depth => Diagnostics.Count;
-        internal Stack<ReadOnlyStackFrame> Diagnostics;
+        internal int Depth => StackFrames.Count;
+        internal Stack<ReadOnlyStackFrame> StackFrames;
         private Stack<long> _savedTime = new Stack<long>();
         private Stopwatch _stopwatch;
 
@@ -22,7 +22,7 @@ namespace Tracer
         public ThreadTrace(int id)
         {
             Id = id;
-            Diagnostics = new Stack<ReadOnlyStackFrame>();
+            StackFrames = new Stack<ReadOnlyStackFrame>();
             _stopwatch = new Stopwatch();
         }
 
@@ -49,12 +49,12 @@ namespace Tracer
             }
         }
 
-        internal void CreateNewDiagnostic(ReadOnlyStackFrame traceDiagnostic)
+        internal void AddStackFrame(ReadOnlyStackFrame traceDiagnostic)
         {
-            Diagnostics.Push(traceDiagnostic);
+            StackFrames.Push(traceDiagnostic);
         }
 
-        internal void TryToStartStopwatch()
+        internal void TryToStartTimer()
         {
             if (!_stopwatch.IsRunning)
                 _stopwatch.Start();
@@ -65,13 +65,13 @@ namespace Tracer
             _savedTime.Push(_stopwatch.ElapsedMilliseconds);
         }
 
-        internal void TryToStopTimeMeasurment()
+        internal void TryToStopTimer()
         {
             if (_stopwatch.IsRunning)
                 _stopwatch.Stop();
         }
 
-        internal long GetTimeMeasurmentOfLastMethod()
+        internal long GetLastMethodTime()
         {
             TotalTime = Math.Max(TotalTime, _stopwatch.ElapsedMilliseconds);
             return _savedTime.Any() ? _stopwatch.ElapsedMilliseconds - _savedTime.Pop() : 0;

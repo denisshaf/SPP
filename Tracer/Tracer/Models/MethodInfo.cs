@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tracer
+namespace Tracer.Models
 {
     public class MethodInfo
     {
