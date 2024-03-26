@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{B29AF65B-AB9A-4AD9-88DD-C89544BDDA15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C67A61CB-61D3-4F42-AD49-9BF0DDAC7914}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csproj", "{49A9CD81-437D-4E37-A52C-EA45113C6EFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B29AF65B-AB9A-4AD9-88DD-C89544BDDA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B29AF65B-AB9A-4AD9-88DD-C89544BDDA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B29AF65B-AB9A-4AD9-88DD-C89544BDDA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B29AF65B-AB9A-4AD9-88DD-C89544BDDA15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C67A61CB-61D3-4F42-AD49-9BF0DDAC7914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C67A61CB-61D3-4F42-AD49-9BF0DDAC7914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C67A61CB-61D3-4F42-AD49-9BF0DDAC7914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C67A61CB-61D3-4F42-AD49-9BF0DDAC7914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A9CD81-437D-4E37-A52C-EA45113C6EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A9CD81-437D-4E37-A52C-EA45113C6EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A9CD81-437D-4E37-A52C-EA45113C6EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A9CD81-437D-4E37-A52C-EA45113C6EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3DC1562-6D6C-4E6B-82C3-4CA3B89E9666}
+	EndGlobalSection
+EndGlobal
