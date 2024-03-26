@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tracer.Models;
 
 namespace Tracer
 {
-    internal class Tracer
+    public class Tracer : ITracer
     {
         Dictionary<int, ThreadTrace> Threads = new Dictionary<int, ThreadTrace>();
 
@@ -38,7 +39,7 @@ namespace Tracer
                     throw new NullReferenceException($"There are no frames in thread: {_currentThreadId}");
 
                 var thread = Threads[_currentThreadId];
-                thread.CreateNewDiagnostic(new ReadOnlyStackFrame(frame));
+                thread.AddStackFrame(new ReadOnlyStackFrame(frame));
                 thread.StopwatchMark();
                 thread.TryToStartTimer();
             }
@@ -50,7 +51,7 @@ namespace Tracer
             {
                 if (!Threads.ContainsKey(_currentThreadId))
                     throw new InvalidOperationException(
-                      $"Attemp to stop trace for thread (id {_currentThreadId}) without tracing methods"
+                      $"Attemp to stop trace for thread (id {_currentThreadId}) without starting tracing"
                     );
 
                 var thread = Threads[_currentThreadId];
@@ -58,11 +59,10 @@ namespace Tracer
                 if (thread.StackFrames.TryPop(out var diagnostic))
                 {
                     var methodInfo = diagnostic.Frame.GetMethod();
-                    var sb = new System.Text.StringBuilder();
+                    var sb = new StringBuilder();
                     if (methodInfo != null)
                     {
-                        thread.SaveMethodInfo(
-                          new MethodInfo(
+                        thread.SaveMethodInfo(new MethodInfo(
                             methodInfo.Name,
                             methodInfo.ReflectedType!.Name,
                             thread.GetLastMethodTime()

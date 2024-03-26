@@ -1,4 +1,6 @@
-﻿namespace Tracer
+﻿using Tracer.Models;
+
+namespace Tracer
 {
     public interface ITracer
     {

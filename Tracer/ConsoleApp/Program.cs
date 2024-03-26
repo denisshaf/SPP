@@ -1,4 +1,6 @@
 ﻿using Tracer;
+using Tracer.Models;
+using Tracer.Serialization;
 
 namespace ConsoleApp
 {
@@ -61,7 +63,7 @@ public class Foo
     public void PrintTraceResults()
     {
         var result = _tracer.GetTraceResult();
-        System.Console.WriteLine("Thread -> {0}", System.Environment.CurrentManagedThreadId);
+        Console.WriteLine("Thread -> {0}", Environment.CurrentManagedThreadId);
         foreach (var t in result.Threads)
         {
             Console.WriteLine(t.ToString());
