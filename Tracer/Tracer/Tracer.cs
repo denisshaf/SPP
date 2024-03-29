@@ -13,7 +13,7 @@ namespace Tracer
         Dictionary<int, ThreadTrace> Threads = new Dictionary<int, ThreadTrace>();
 
         private object _lockObject = new object();
-        private int _lastDepth = int.MinValue;
+        private Dictionary<int,int> lastDepth = new();
 
         private int _currentThreadId => System.Environment.CurrentManagedThreadId;
 
@@ -32,8 +32,10 @@ namespace Tracer
             lock (_lockObject)
             {
                 if (!Threads.ContainsKey(_currentThreadId))
+                {
                     Threads.Add(_currentThreadId, new ThreadTrace(_currentThreadId));
-
+                    lastDepth.Add(_currentThreadId, Int32.MaxValue);
+                }
                 var frame = new StackTrace(true).GetFrame(1);
                 if (frame == null)
                     throw new NullReferenceException($"There are no frames in thread: {_currentThreadId}");
@@ -56,18 +58,17 @@ namespace Tracer
 
                 var thread = Threads[_currentThreadId];
                 thread.TryToStopTimer();
-                if (thread.StackFrames.TryPop(out var diagnostic))
+                if (thread.StackFrames.TryPop(out var frame))
                 {
-                    var methodInfo = diagnostic.Frame.GetMethod();
-                    var sb = new StringBuilder();
+                    var methodInfo = frame.Frame.GetMethod();
                     if (methodInfo != null)
                     {
-                        thread.SaveMethodInfo(new MethodInfo(
+                        lastDepth[_currentThreadId] = thread.SaveMethodInfo(new MethodInfo(
                             methodInfo.Name,
                             methodInfo.ReflectedType!.Name,
                             thread.GetLastMethodTime()
                           ),
-                          ref _lastDepth
+                          lastDepth[_currentThreadId]
                         );
                     }
                 }

@@ -11,13 +11,12 @@ namespace ConsoleApp
             ITracer tracer = new Tracer.Tracer();
             var foo = new Foo(tracer);
             int threadsAmount = 10;
-            var locker = new object();
             var tasks = new Task[threadsAmount];
             for (int i = 1; i <= threadsAmount; i++)
             {
                 tasks[i - 1] = new Task(() =>
                 {
-                    foo.RunMethodForTrace(50);
+                    foo.Run(50);
                 });
             }
             Parallel.ForEach(tasks, (t) => { t.Start(); });
@@ -33,10 +32,11 @@ public class Foo
     private ITracer _tracer;
     public TraceResult TraceResults => _tracer.GetTraceResult();
 
-    public void RunMethodForTrace(int time)
+    public void Run(int time)
     {
         _tracer.StartTrace();
         Thread.Sleep(time);
+        MyMethod();
         _tracer.StopTrace();
     }
 

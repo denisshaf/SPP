@@ -35,9 +35,6 @@ namespace Tests
             Parallel.ForEach(tasks, t => t.Start());
             Task.WaitAll(tasks);
             var result = foo.Tracer.GetTraceResult();
-            // Amount of all queries
-            // var methodInfoAmount = result.Threads.Select(dto => dto.Methods.Count()).Sum();
-            // Amount of all methods
             var methodInfoAmount = result.Threads.Select(dto => dto.Methods.Select(m => m.Count()).Sum()).Sum();
 
             Assert.Equal(threadsAmount, methodInfoAmount);
