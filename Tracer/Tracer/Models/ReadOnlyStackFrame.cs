@@ -7,5 +7,13 @@ using System.Threading.Tasks;
 
 namespace Tracer.Models
 {
-    internal record ReadOnlyStackFrame(StackFrame Frame);
+    internal class ReadOnlyStackFrame
+    {
+        public readonly StackFrame Frame;
+
+        public ReadOnlyStackFrame(StackFrame frame)
+        {
+            Frame = frame;
+        }
+    }
 }

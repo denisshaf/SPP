@@ -31,7 +31,7 @@ namespace Tracer.Models
             return _methodsList;
         }
 
-        internal void SaveMethodInfo(MethodInfo method, ref int lastDepth)
+        internal int SaveMethodInfo(MethodInfo method, int lastDepth)
         {
             if (Depth < lastDepth)
             {
@@ -40,13 +40,13 @@ namespace Tracer.Models
             }
 
             _traceQueue.Enqueue(method);
-            lastDepth = Depth;
 
             if (Depth == 0)
             {
                 _methodsList.Add(_traceQueue);
                 _traceQueue = new Queue<MethodInfo>();
             }
+            return Depth;
         }
 
         internal void AddStackFrame(ReadOnlyStackFrame traceDiagnostic)
