@@ -173,13 +173,43 @@ namespace FakerProj.FakerLib
 
             if (_generators.TryGetValue(type, out Type? generatorType))
             {
-                var generator = Activator.CreateInstance(generatorType);
-                var generateMethod = generatorType.GetMethod("GetValue")!;
+                if (generatorType.IsGenericType)
+                {
+                    return GetGeneric(baseType, generatorType);
+                }
+                else
+                {
+                    var generator = Activator.CreateInstance(generatorType);
+                    var generateMethod = generatorType.GetMethod("GetValue")!;
 
-                return generateMethod.Invoke(generator, null);
+                    return generateMethod.Invoke(generator, null);
+                }
+            }
+
+            if (type.IsGenericType)
+            {
+                return null;
             }
 
             return Create(type);
+        }
+
+        private object? GetGeneric(Type entityType, Type generatorType)
+        {
+            var genericArguments = entityType.GetGenericArguments().ToList();
+            var generatorArgumentsPos = genericArguments.Count;
+            var generatorArgumentsCount = generatorType.GetGenericArguments().Length;
+
+            for (int i = 0; i < generatorArgumentsCount - generatorArgumentsPos && i < genericArguments.Count; i++)
+            {
+                genericArguments.Add(_generators[genericArguments[i]]);
+            }
+
+            var genericGenerator = generatorType.MakeGenericType([.. genericArguments]);
+            var generator = Activator.CreateInstance(genericGenerator);
+            var generateMethod = genericGenerator.GetMethod("GetValue")!;
+
+            return generateMethod.Invoke(generator, null);
         }
     }
 }
