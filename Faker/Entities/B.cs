@@ -3,6 +3,7 @@
     public class B(int id)
     {
         public readonly int Id = id;
+        public readonly string Name;
 
         public C? C;
 

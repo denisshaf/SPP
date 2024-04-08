@@ -1,4 +1,6 @@
-﻿namespace FakerLab.Generators.NumericGenerators.Floats
+﻿using FakerProj.Generators;
+
+namespace FakerLab.Generators.Numbers.Floats
 {
     public class GeneratorFloat : IGenerator<float>
     {

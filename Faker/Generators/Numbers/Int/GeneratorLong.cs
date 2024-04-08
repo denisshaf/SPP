@@ -1,4 +1,4 @@
-﻿namespace FakerLab.Generators.NumericGenerators.Integers
+﻿namespace FakerProj.Generators.NumericGenerators.Integers
 {
     internal class GeneratorLong : IGenerator<long>
     {

@@ -1,4 +1,4 @@
-﻿namespace FakerLab.Generators.StringGenerators
+﻿namespace FakerProj.Generators.StringGenerators
 {
     public class GeneratorChar : IGenerator<char>
     {

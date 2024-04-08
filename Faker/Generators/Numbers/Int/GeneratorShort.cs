@@ -1,4 +1,4 @@
-﻿namespace FakerLab.Generators.NumericGenerators.Integers
+﻿namespace FakerProj.Generators.NumericGenerators.Integers
 {
     public class GeneratorShort : IGenerator<short>
     {

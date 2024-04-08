@@ -1,6 +1,6 @@
-﻿using FakerLab.Generators.NumericGenerators.Integers;
+﻿using FakerProj.Generators.Numbers.Integers;
 
-namespace FakerLab.Generators.TimeGenerators
+namespace FakerProj.Generators.TimeGenerators
 {
     public class GeneratorDateTime : IGenerator<DateTime>
     {

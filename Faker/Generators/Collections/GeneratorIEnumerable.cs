@@ -1,4 +1,4 @@
-﻿namespace FakerLab.Generators.CollectionGenerators
+﻿namespace FakerProj.Generators.CollectionGenerators
 {
     public class GeneratorIEnumerable<T, TGenerator> : IGenerator<IEnumerable<T>> 
         where TGenerator : IGenerator<T>, new()

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FakerLab.Generators.StringGenerators
+namespace FakerProj.Generators.StringGenerators
 {
     public class GeneratorString : IGenerator<string>
     {

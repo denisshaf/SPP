@@ -1,6 +1,6 @@
-﻿using FakerLab.Generators.NumericGenerators.Integers;
+﻿using FakerProj.Generators.Numbers.Integers;
 
-namespace FakerLab.Generators.NumericGenerators.Floats
+namespace FakerProj.Generators.Numbers.Floats
 {
     public class GeneratorDecimal : IGenerator<decimal>
     {

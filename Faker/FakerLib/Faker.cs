@@ -1,5 +1,6 @@
 ﻿using FakerLab.Generators.Numbers.Floats;
 using FakerLab.Generators.TimeGenerators;
+using FakerProj.Generators;
 using FakerProj.Generators.CollectionGenerators;
 using FakerProj.Generators.Numbers.Floats;
 using FakerProj.Generators.Numbers.Integers;
@@ -210,6 +211,23 @@ namespace FakerProj.FakerLib
             var generateMethod = genericGenerator.GetMethod("GetValue")!;
 
             return generateMethod.Invoke(generator, null);
+        }
+        public void AddGeneratorWithPlugin(string pluginPath)
+        {
+            var pluginAssembly = Assembly.LoadFrom(pluginPath);
+            var pluginTypes = pluginAssembly.GetExportedTypes();
+
+            foreach (var pluginType in pluginTypes)
+            {
+                if (pluginType.GetInterfaces().Any(x => x.GetGenericTypeDefinition() == typeof(IGenerator<>)))
+                {
+                    var targetType = pluginType.GetInterfaces()
+                        .Single(x => x.GetGenericTypeDefinition() == typeof(IGenerator<>))
+                        .GetGenericArguments()
+                        .Single();
+                    _generators.Add(targetType, pluginType);
+                }
+            }
         }
     }
 }

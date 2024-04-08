@@ -1,4 +1,4 @@
-﻿namespace FakerLab.Generators.NumericGenerators.Floats
+﻿namespace FakerProj.Generators.Numbers.Floats
 {
     public class GeneratorDouble : IGenerator<double>
     {

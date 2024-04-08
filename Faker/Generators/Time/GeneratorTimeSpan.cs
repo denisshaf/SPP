@@ -1,4 +1,5 @@
-﻿using FakerLab.Generators.NumericGenerators.Integers;
+﻿using FakerProj.Generators;
+using FakerProj.Generators.Numbers.Integers;
 
 namespace FakerLab.Generators.TimeGenerators
 {

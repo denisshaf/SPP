@@ -1,4 +1,6 @@
-﻿namespace FakerLab.Generators.NumericGenerators.Integers
+﻿using FakerProj.Generators;
+
+namespace FakerProj.Generators.Numbers.Integers
 {
     public class GeneratorInt : IGenerator<int>
     {
