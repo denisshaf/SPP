@@ -206,7 +206,7 @@ namespace FakerProj.FakerLib
                 genericArguments.Add(_generators[genericArguments[i]]);
             }
 
-            var genericGenerator = generatorType.MakeGenericType([.. genericArguments]);
+            var genericGenerator = generatorType.MakeGenericType(genericArguments.ToArray());
             var generator = Activator.CreateInstance(genericGenerator);
             var generateMethod = genericGenerator.GetMethod("GetValue")!;
 
